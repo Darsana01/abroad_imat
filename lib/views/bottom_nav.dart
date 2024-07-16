@@ -6,11 +6,7 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 
 
-void main()
-{
-  runApp(MaterialApp(debugShowCheckedModeBanner: false,
-    home: bottom_nav(),));
-}
+
 class bottom_nav extends StatefulWidget{
   @override
   State<bottom_nav> createState() => _bottom_navState();

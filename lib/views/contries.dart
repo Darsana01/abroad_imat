@@ -5,9 +5,7 @@ import 'package:abroad_imat/Database/country/sql_helper.dart';
 import 'package:abroad_imat/modal/country_modal.dart';
 
 import 'package:flutter/material.dart';
-void main(){
-  runApp(MaterialApp(debugShowCheckedModeBanner: false,home: Abroad_countries(),));
-}
+
 
 class Abroad_countries extends StatelessWidget {
   @override

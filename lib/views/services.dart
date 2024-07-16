@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: ServicePage()));
-}
+
 
 class ServicePage extends StatelessWidget {
   final List<Service> services = [

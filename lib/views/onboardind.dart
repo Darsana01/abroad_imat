@@ -9,12 +9,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:onboarding_animation/onboarding_animation.dart';
 
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: onboarding(),
-  ));
-}
+
 
 class onboarding extends StatefulWidget {
   @override

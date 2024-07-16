@@ -10,12 +10,7 @@ import 'form.dart';
 import 'levels.dart';
 import 'login.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: homeabroad(),
-    debugShowCheckedModeBanner: false,
-  ));
-}
+
 
 class homeabroad extends StatefulWidget {
   homeabroad({super.key});
@@ -85,42 +80,45 @@ class _HomeAbroadState extends State<homeabroad> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                side: const BorderSide(color: Color(0x14), width: 0.5),
-              ),
-              child: Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.black, Colors.red],
-                  ),
-                  borderRadius: BorderRadius.circular(15.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 10,right: 10),
+              child: Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  side: const BorderSide(color: Color(0x14), width: 0.5),
                 ),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "About Us",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.black, Colors.red],
                     ),
-                    SizedBox(height: 10.0),
-                    Text(
-                      "IMAT global is committed to providing students with comprehensive support and guidance as they embark on their journey to study abroad. With a dedicated team of experienced counselors and education experts, we aim to make the process seamless and rewarding for each student, recognizing that studying abroad is a transformative experience",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 11.5,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "About Us",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 10.0),
+                      Text(
+                        "IMAT global is committed to providing students with comprehensive support and guidance as they embark on their journey to study abroad. With a dedicated team of experienced counselors and education experts, we aim to make the process seamless and rewarding for each student, recognizing that studying abroad is a transformative experience",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 11.5,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -129,19 +127,22 @@ class _HomeAbroadState extends State<homeabroad> {
               alignment: Alignment.topLeft,
               child: Directionality(
                 textDirection: TextDirection.ltr,
-                child: Text(
-                  "What are you looking for??",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.grey,
-                    shadows: [
-                      Shadow(
-                        blurRadius: 2,
-                        color: Colors.grey,
-                        offset: Offset(1, 1),
-                      ),
-                    ],
+                child: Padding(
+                  padding: EdgeInsets.only(left: 15,right: 15),
+                  child: Text(
+                    "What are you looking for??",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      color: Colors.grey,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 2,
+                          color: Colors.grey,
+                          offset: Offset(1, 1),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -224,7 +225,7 @@ class _HomeAbroadState extends State<homeabroad> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => University(),
+                                    builder: (context) => UniversityScreen(),
                                   ));
                                 },
                                 child: const Text(

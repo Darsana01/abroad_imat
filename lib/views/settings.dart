@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 
 
 
-void main() {
-  runApp(MaterialApp(home: Settings(), debugShowCheckedModeBanner: false));
-}
+
 
 class Settings extends StatelessWidget {
 
@@ -42,7 +40,7 @@ class _SettingsFormState extends State<SettingsForm> {
           ),
           const Padding(padding: EdgeInsets.all(40.0)),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 38),
             child: TextFormField(
               controller: _usernameController,
               decoration: InputDecoration(
@@ -67,7 +65,7 @@ class _SettingsFormState extends State<SettingsForm> {
           ),
           const SizedBox(height: 15),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 38),
             child: TextFormField(
               controller: _passwordController,
               decoration: InputDecoration(
@@ -93,66 +91,72 @@ class _SettingsFormState extends State<SettingsForm> {
             ),
           ),
           SizedBox(height: 40),
-          Container(
-            width: 400,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              gradient: const LinearGradient(
-                colors: [Colors.red, Colors.black],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => bottom_nav()),
-                  );
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+          Padding(
+            padding: const EdgeInsets.only(left: 35,right: 35),
+            child: Container(
+              width: 400,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: const LinearGradient(
+                  colors: [Colors.red, Colors.black],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
               ),
-              child: const Text(
-                "Done",
-                style: TextStyle(color: Colors.white, fontSize: 20),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => bottom_nav()),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  "Done",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
               ),
             ),
           ),
           const SizedBox(height: 40),
-          Container(
-            width: 400,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              gradient: const LinearGradient(
-                colors: [Colors.red, Colors.black],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+          Padding(
+            padding: const EdgeInsets.only(left: 35,right: 35),
+            child: Container(
+              width: 400,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: const LinearGradient(
+                  colors: [Colors.red, Colors.black],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
               ),
-              child: const Text(
-                "Logout",
-                style: TextStyle(color: Colors.white, fontSize: 20),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  "Logout",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
               ),
             ),
           ),

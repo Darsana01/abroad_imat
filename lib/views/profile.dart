@@ -1,9 +1,7 @@
 import 'package:abroad_imat/views/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(home: profile(), debugShowCheckedModeBanner:false));
-}
+
 
 class profile extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -67,31 +65,34 @@ class profile extends StatelessWidget {
                 return null;
               }),
               const SizedBox(height: 40),
-              Container(
-                width: 400,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: const LinearGradient(
-                    colors: [Colors.red, Colors.black],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => bottom_nav()));
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 43,right: 43),
+                child: Container(
+                  width: 400,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: const LinearGradient(
+                      colors: [Colors.red, Colors.black],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
                   ),
-                  child: const Text("Done", style: TextStyle(color: Colors.white, fontSize: 20)),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => bottom_nav()));
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text("Done", style: TextStyle(color: Colors.white, fontSize: 20)),
+                  ),
                 ),
               ),
             ],

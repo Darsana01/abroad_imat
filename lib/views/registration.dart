@@ -1,24 +1,32 @@
+import 'package:abroad_imat/Database/Authentication/auth.dart';
+import 'package:abroad_imat/modal/Auth_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 
-void main() {
-  runApp(MaterialApp(home: RegistrationPage(), debugShowCheckedModeBanner: false));
-}
 
-class RegistrationPage extends StatelessWidget {
+
+class RegistrationPage extends StatefulWidget {
   RegistrationPage({Key? key});
 
   @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+  final username = TextEditingController();
+  final password = TextEditingController();
+  final confirmPassword = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    final TextEditingController _passwordController = TextEditingController();
-    final TextEditingController _confirmPasswordController = TextEditingController();
+    
 
     return Scaffold(
         body: SingleChildScrollView(
             child: Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 children: [
                   const SizedBox(height: 15,),
@@ -27,7 +35,9 @@ class RegistrationPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
+                      controller: username,
                       decoration: InputDecoration(
+                        
                         labelText: 'Name',
                         labelStyle: const TextStyle(color: Colors.black),
                         enabledBorder: OutlineInputBorder(
@@ -54,6 +64,7 @@ class RegistrationPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
+                      
                       decoration: InputDecoration(
                         labelText: 'Phone number',
                         labelStyle: const TextStyle(color: Colors.black),
@@ -81,7 +92,7 @@ class RegistrationPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
-                      controller: _passwordController,
+                      controller: password,
                       decoration: InputDecoration(
                         labelText: 'Password',
                         labelStyle: const TextStyle(color: Colors.black),
@@ -110,7 +121,7 @@ class RegistrationPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
-                      controller: _confirmPasswordController,
+                      controller: confirmPassword,
                       decoration: InputDecoration(
                         labelText: 'Confirm Password',
                         labelStyle: const TextStyle(color: Colors.black),
@@ -128,7 +139,7 @@ class RegistrationPage extends StatelessWidget {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please confirm your password';
-                        } else if (value != _passwordController.text) {
+                        } else if (value != password.text) {
                           return 'Passwords do not match';
                         }
                         return null;
@@ -149,9 +160,21 @@ class RegistrationPage extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage()));
-                        }
+                       if (formKey.currentState!.validate()) {
+
+                            final db = DatabaseHelper();
+                            db
+                                .signup(AuthModal(
+                                    username: username.text,
+                                    password: password.text))
+                                .whenComplete(() {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LoginPage()));
+                            });
+                          }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,

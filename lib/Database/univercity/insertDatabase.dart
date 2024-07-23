@@ -99,7 +99,7 @@ import 'package:abroad_imat/modal/univercity_modal.dart';
 
   ];
 
- Future<void> insertUnivercityData() async {
+Future<void> insertUnivercityData() async {
   final dbHelper = UniversityDatabaseHelper();
   for (var item in universityData) {
     await dbHelper.insertUniversity(University(

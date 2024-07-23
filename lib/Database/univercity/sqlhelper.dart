@@ -22,8 +22,9 @@ class UniversityDatabaseHelper {
     String path = join(await getDatabasesPath(), 'university.db');
     return await openDatabase(
       path,
-      version: 1,
+      version: 2, // Incremented the version
       onCreate: _onCreate,
+      onUpgrade: _onUpgrade, // Added onUpgrade method
     );
   }
 
@@ -35,6 +36,13 @@ class UniversityDatabaseHelper {
         content TEXT NOT NULL
       )
     ''');
+  }
+
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      // Add content column to the table
+      await db.execute('ALTER TABLE universities ADD COLUMN content TEXT NOT NULL DEFAULT "[]"');
+    }
   }
 
   Future<void> insertUniversity(University university) async {
@@ -55,7 +63,7 @@ class UniversityDatabaseHelper {
     });
   }
 
-  Future<void> deleteAllCountries() async {
+  Future<void> deleteAllUniversities() async {
     final db = await database;
     await db.delete('universities');
   }

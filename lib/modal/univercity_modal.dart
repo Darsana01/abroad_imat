@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class University {
+  
   final String title;
   final List<String> content;
 

@@ -3,37 +3,47 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
+  static final DatabaseHelper _instance = DatabaseHelper._internal();
+
+  factory DatabaseHelper() {
+    return _instance;
+  }
+
+  DatabaseHelper._internal();
+
+  static Database? _database;
+
   final databaseName = "onboard.db";
 
   String users = 
-      "CREATE TABLE users (usrId INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)"; // Corrected column name
+      "CREATE TABLE users (usrId INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)";
 
   Future<void> deleteDatabaseIfExists() async {
     String databasesPath = await getDatabasesPath();
     String path = join(databasesPath, databaseName);
     
-    // Delete the existing database
     await deleteDatabase(path);
   }
 
   Future<Database> initDB() async {
-    await deleteDatabaseIfExists(); // Clear existing database (for development only)
-
+    if (_database != null) return _database!;
+    
     String databasesPath = await getDatabasesPath();
     String path = join(databasesPath, databaseName);
 
-    return await openDatabase(
+    _database = await openDatabase(
       path,
-      version: 2, // Incremented version
+      version: 2,
       onCreate: (Database db, int version) async {
         await db.execute(users);
       },
       onUpgrade: (Database db, int oldVersion, int newVersion) async {
-        // Drop the existing table and create a new one
         await db.execute("DROP TABLE IF EXISTS users");
         await db.execute(users);
       },
     );
+
+    return _database!;
   }
 
   Future<bool> login(AuthModal user) async {
@@ -47,5 +57,11 @@ class DatabaseHelper {
   Future<int> signup(AuthModal user) async {
     final Database db = await initDB();
     return db.insert('users', user.toJson());
+  }
+
+  Future<void> closeDB() async {
+    final Database db = await initDB();
+    await db.close();
+    _database = null;
   }
 }

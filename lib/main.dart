@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:abroad_imat/Database/univercity/insertDatabase.dart';
 import 'package:abroad_imat/views/bottom_nav.dart';
-import 'package:abroad_imat/views/contries.dart';
 import 'package:abroad_imat/views/onboardind.dart';
+
 import 'package:flutter/material.dart';
 
 void main() async{
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      debugShowCheckedModeBanner: false,
-      home:  bottom_nav(),
+      home:  onboarding(),
     );
   }
 }

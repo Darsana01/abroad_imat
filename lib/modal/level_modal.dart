@@ -13,11 +13,12 @@ class Levelmodal {
 
   factory Levelmodal.fromMap(Map<String, dynamic> map) {
     return Levelmodal(
-      title: map['title']??'',
-      intake: map['intake']?? '',
-        tuitionFee: map['tuitionFee'] != null && map['tuitionFee'].isNotEmpty
-          ? TuitionFee.fromJson(jsonDecode(map['tuitionFee']))
-          : TuitionFee(bachelors: '', masters: ''),
+      title: map['title'],
+      intake: map['intake'],
+      tuitionFee: TuitionFee.fromJson(json.decode(map['tuitionFee'])),
+        // tuitionFee: map['tuitionFee'] != null && map['tuitionFee'].isNotEmpty
+        //   ? TuitionFee.fromJson(jsonDecode(map['tuitionFee']))
+        //   : TuitionFee(bachelors: '', masters: ''),
     
     );
   }

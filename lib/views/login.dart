@@ -1,7 +1,6 @@
 import 'package:abroad_imat/modal/Auth_modal.dart';
 import 'package:abroad_imat/views/bottom_nav.dart';
-import 'package:abroad_imat/views/contries.dart';
-import 'package:abroad_imat/views/onboardind.dart';
+
 import 'package:flutter/material.dart';
 import 'package:abroad_imat/Database/Authentication/auth.dart';
 
@@ -27,7 +26,7 @@ final db=DatabaseHelper();
 void login() async {
     bool response = await db.login(AuthModal(username: username.text, password: password.text));
     if (response) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => bottom_nav()));
     } else {
       setState(() {
         isLoginTrue = true;
@@ -164,7 +163,7 @@ void login() async {
                 // ),
                 const SizedBox(height: 40),
                 Container(
-                  width: 400,
+                  width: 300,
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),

@@ -15,6 +15,10 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   final username = TextEditingController();
+    final qualification = TextEditingController();
+  final email = TextEditingController();
+    final phonenumber = TextEditingController();
+  final state =TextEditingController();
   final password = TextEditingController();
   final confirmPassword = TextEditingController();
 
@@ -61,34 +65,94 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                   ),
                   const SizedBox(height: 15,),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
+                  //  Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 50),
+                  //   child: TextFormField(
+                  //     controller: username,
+                  //     decoration: InputDecoration(
+                        
+                  //       labelText: 'Qualification',
+                  //       labelStyle: const TextStyle(color: Colors.black),
+                  //       enabledBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(10),
+                  //         borderSide: const BorderSide(color: Colors.red),
+                  //       ),
+                  //       focusedBorder: const OutlineInputBorder(
+                  //         borderSide: BorderSide(color: Colors.red),
+                  //       ),
+                  //     ),
+                  //     style: const TextStyle(color: Colors.black),
                       
-                      decoration: InputDecoration(
-                        labelText: 'Phone number',
-                        labelStyle: const TextStyle(color: Colors.black),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.red),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                        ),
-                      ),
-                      style: const TextStyle(color: Colors.black),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your phone number';
-                        }
-                        if (!RegExp(r'^\d{10}$').hasMatch(value)) {
-                          return 'Phone number must be exactly 10 digits';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 15,),
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 50),
+                  //   child: TextFormField(
+                  //     controller: username,
+                  //     decoration: InputDecoration(
+                        
+                  //       labelText: 'Email',
+                  //       labelStyle: const TextStyle(color: Colors.black),
+                  //       enabledBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(10),
+                  //         borderSide: const BorderSide(color: Colors.red),
+                  //       ),
+                  //       focusedBorder: const OutlineInputBorder(
+                  //         borderSide: BorderSide(color: Colors.red),
+                  //       ),
+                  //     ),
+                  //     style: const TextStyle(color: Colors.black),
+                      
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 50),
+                  //   child: TextFormField(
+                      
+                  //     decoration: InputDecoration(
+                  //       labelText: 'Phone number',
+                  //       labelStyle: const TextStyle(color: Colors.black),
+                  //       enabledBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(10),
+                  //         borderSide: const BorderSide(color: Colors.red),
+                  //       ),
+                  //       focusedBorder: const OutlineInputBorder(
+                  //         borderSide: BorderSide(color: Colors.red),
+                  //       ),
+                  //     ),
+                  //     style: const TextStyle(color: Colors.black),
+                  //     validator: (value) {
+                  //       if (value == null || value.isEmpty) {
+                  //         return 'Please enter your phone number';
+                  //       }
+                  //       if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+                  //         return 'Phone number must be exactly 10 digits';
+                  //       }
+                  //       return null;
+                  //     },
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 50),
+                  //   child: TextFormField(
+                  //     controller: username,
+                  //     decoration: InputDecoration(
+                        
+                  //       labelText: 'State',
+                  //       labelStyle: const TextStyle(color: Colors.black),
+                  //       enabledBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(10),
+                  //         borderSide: const BorderSide(color: Colors.red),
+                  //       ),
+                  //       focusedBorder: const OutlineInputBorder(
+                  //         borderSide: BorderSide(color: Colors.red),
+                  //       ),
+                  //     ),
+                  //     style: const TextStyle(color: Colors.black),
+                      
+                  //   ),
+                  // ),
+                 // const SizedBox(height: 15,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: TextFormField(
@@ -148,7 +212,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                   const SizedBox(height: 40,),
                   Container(
-                    width: 400,
+                    width: 300,
                     height: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),

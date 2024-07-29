@@ -8,6 +8,7 @@ import 'home.dart';
 
 
 class bottom_nav extends StatefulWidget{
+  
   @override
   State<bottom_nav> createState() => _bottom_navState();
 }
@@ -16,7 +17,7 @@ class _bottom_navState extends State<bottom_nav> {
 
   int index =0;
   var Screens=[
-    homeabroad(),
+    homeabroad(username: "u",),
     profile(),
     Settings(),
   ];

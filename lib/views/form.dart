@@ -1,132 +1,131 @@
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/gradient_borders.dart';
-import 'home.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: Abroad_form(),
-    debugShowCheckedModeBanner: false,
-  ));
+  runApp(MaterialApp(home: BusinessCard()));
 }
 
-class Abroad_form extends StatefulWidget {
-  const Abroad_form({super.key});
-
-  @override
-  State<Abroad_form> createState() => _AbroadFormState();
-}
-class _AbroadFormState extends State<Abroad_form> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _fnameController = TextEditingController();
-  final TextEditingController _lnameController = TextEditingController();
-  final TextEditingController _stphnoController = TextEditingController();
-  final TextEditingController _phnoController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _locationController = TextEditingController();
-  final TextEditingController _qualificationController = TextEditingController();
-  final TextEditingController _courseController = TextEditingController();
-  final TextEditingController _levelController = TextEditingController();
-
+class BusinessCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding:const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: ShaderMask(
-                    shaderCallback: (bounds) => const LinearGradient(
-                      colors: [Colors.black, Colors.red],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ).createShader(bounds),
-                    child:const Text(
-                      "Referral Partner Registration",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
+      backgroundColor: Colors.grey[200],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Container(
+                width: 350,
+                height: 200,
+                
+                child: Card(
+                  
+                  elevation: 4.0,
+                  child: Container(
+                    padding: EdgeInsets.all(16.0),
+                    width: 350,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                      end: Alignment.topCenter,
+                      colors:[
+                        Color(0xFF930404),
+                        Color(0xFF6B0606),
+                        Color(0xFF410505),
+                        Color(0xFF1F0303),
+                        Color(0xFF0E0101),
+                      ]
+                  )
                 ),
-                 const SizedBox(height: 10),
-                _buildTextField(_fnameController, "First Name", "Please enter the name", "Name must contain only alphabets"),
-                _buildTextField(_lnameController, "Last Name", "Please enter the name", "Name must contain only alphabets"),
-                _buildTextField(_stphnoController, "Student Phone Number", "Please enter your phone number", "Phone number must be 10 digits", r'^\d{10}$'),
-                _buildTextField(_phnoController, "Parent Phone Number", "Please enter your phone number", "Phone number must be 10 digits", r'^\d{10}$'),
-                _buildTextField(_emailController, "Email", "Please enter your email", "Please enter a valid email", r'.+@.+\..+'),
-                _buildTextField(_locationController, "Location", "Please enter your location"),
-                _buildTextField(_qualificationController, "Last Qualification", "Please enter your qualification", "Please enter a valid qualification"),
-                _buildTextField(_courseController, "Preferred Course", "Please enter your preferred course", "Please enter a valid course"),
-                _buildTextField(_levelController, "Level", "Please enter your level", "Please enter a valid level"),
-                const SizedBox(height: 10),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    gradient: LinearGradient(
-                      colors: [Colors.black, Colors.red],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => homeabroad()));
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      shape:RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                    ),
-                    child:Text(
-                      "Submit",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 300,
+                          height: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
 
-  Widget _buildTextField(TextEditingController controller, String label, String emptyMessage, [String? invalidMessage, String? regex]) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          border: GradientOutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            gradient: const LinearGradient(
-              colors: [Colors.red, Colors.black],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+                          ),
+                          child: Image.asset("Assets/Images/Imat-logo White.png",fit: BoxFit.cover,),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-          label: Text(label),
+            Card(
+              child: Container(
+                height: 200,
+                width: 350,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerRight,
+                      end: Alignment.topCenter,
+                      colors:[
+                        Color(0xFF930404),
+                        Color(0xFF6B0606),
+                        Color(0xFFF39D9D),
+                        Color(0xFFF8C4C4),
+                        Color(0xFFF8F2F2),
+                      ]
+                  )
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.location_on, color: Colors.red),
+                          SizedBox(width: 8.0),
+                          Expanded(
+                            child: Text('\n34/740 A, Amana Plaza\nMetro Pillar No: 381, Edapally Toll\nErnakulam, Kerala - 682024'),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 8.0),
+                      Row(
+                        children: [
+                          Icon(Icons.email, color: Colors.red),
+                          SizedBox(width: 8.0),
+                          GestureDetector(
+                            onTap: () => launch('mailto:info@imatglobal.com'),
+                            child: Text('info@imatglobal.com'),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 8.0),
+                      Row(
+                        children: [
+                          Icon(Icons.phone, color: Colors.red),
+                          SizedBox(width: 8.0),
+                          Text('0484-4044484, 0759-4044484'),
+                        ],
+                      ),
+                      SizedBox(height: 8.0),
+                      Row(
+                        children: [
+                          Icon(Icons.web, color: Colors.red),
+                          SizedBox(width: 8.0),
+                          GestureDetector(
+                            onTap: () => launch('https://www.imatglobal.com'),
+                            child: Text('www.imatglobal.com'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return emptyMessage;
-          } else if (regex != null && !RegExp(regex).hasMatch(value)) {
-            return invalidMessage;
-          }
-          return null;
-        },
       ),
     );
   }

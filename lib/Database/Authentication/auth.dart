@@ -64,4 +64,28 @@ class DatabaseHelper {
     await db.close();
     _database = null;
   }
+
+  Future<int> updateUser(AuthModal user) async {
+    final Database db = await initDB();
+    return await db.update(
+      'users',
+      user.toJson(),
+      where: 'usrId = ?',
+      whereArgs: [user.usrId],
+    );
+  }
+
+  Future<AuthModal?> getUser(int usrId) async {
+    final Database db = await initDB();
+    var result = await db.query('users', where: 'usrId = ?', whereArgs: [usrId]);
+    if (result.isNotEmpty) {
+      return AuthModal(
+        usrId: result.first['usrId'] as int?,
+        username: result.first['username'] as String,
+        password: result.first['password'] as String,
+      );
+    }
+    return null;
+  }
 }
+

@@ -1,3 +1,4 @@
+import 'package:abroad_imat/views/login.dart';
 import 'package:abroad_imat/views/page1.dart';
 import 'package:abroad_imat/views/page2.dart';
 import 'package:abroad_imat/views/page3.dart';
@@ -124,7 +125,7 @@ class _HomePageState extends State<onboarding> {
                         nextCounter++;
                       } else {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => RegistrationPage()));
+                            builder: (context) => LoginPage()));
                       }
                     },
                     child:const Text(

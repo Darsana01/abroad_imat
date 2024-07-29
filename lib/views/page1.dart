@@ -7,7 +7,7 @@ class page1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.transparent,
-        body: Align(alignment: Alignment.center, child: Image.asset("assets/images/img3.jpeg"))
+        body: Align(alignment: Alignment.center, child: Image.asset("Assets/Images/img3.jpeg"))
     );
   }
 }

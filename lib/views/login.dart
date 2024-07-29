@@ -1,5 +1,6 @@
 import 'package:abroad_imat/modal/Auth_modal.dart';
 import 'package:abroad_imat/views/bottom_nav.dart';
+import 'package:abroad_imat/views/registration.dart';
 
 import 'package:flutter/material.dart';
 import 'package:abroad_imat/Database/Authentication/auth.dart';
@@ -18,10 +19,10 @@ class _LoginPageState extends State<LoginPage> {
 
    final username = TextEditingController();
       final password = TextEditingController();
-
-
+        ValueNotifier<bool> isObscure = ValueNotifier(true);
     bool isLoginTrue=false;
 final db=DatabaseHelper();
+ 
 
 void login() async {
     bool response = await db.login(AuthModal(username: username.text, password: password.text));
@@ -64,12 +65,16 @@ void login() async {
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.red),
                         ),
+                        suffixIcon: Icon(Icons.supervised_user_circle)
                       ),
                       style: const TextStyle(color: Colors.black),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your name';
                         }
+                        // if(username!= value){
+                        //   return "enter correct username";
+                        // }
                         if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
                           return 'Name must contain only alphabetic characters';
                         }
@@ -104,10 +109,13 @@ void login() async {
                 //   ),
                 // ),
                 const SizedBox(height: 15,),
-                Padding(
+                ValueListenableBuilder(valueListenable: isObscure,
+                 builder: (context,value,child){
+                  return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: TextFormField(
                     controller: password,
+                    
                     decoration: InputDecoration(
                       labelText: 'Password',
                       labelStyle: const TextStyle(color: Colors.black),
@@ -118,9 +126,17 @@ void login() async {
                       focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red),
                       ),
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            isObscure.value = !isObscure.value;
+                          },
+                          icon: value
+                              ? const Icon(Icons.visibility_off)
+                              : const Icon(Icons.visibility),
+                        ),
                     ),
                     style: const TextStyle(color: Colors.black),
-                    obscureText: true,
+                    obscureText: value,
                     obscuringCharacter: '*',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -131,7 +147,10 @@ void login() async {
                       return null;
                     },
                   ),
-                ),
+                );
+                 }
+                 ),
+                
                 const SizedBox(height: 15,),
                 // Padding(
                 //   padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -189,6 +208,26 @@ void login() async {
                     child: const Text("Login", style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ),
+                SizedBox(height: 15,),
+                 Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Not Yet Registered? ",
+                  
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => RegistrationPage()));
+                  },
+                  child: Text(
+                    "Register Now",
+                    
+                  ),
+                )
+              ],
+            )
               ],
             ),
           ),

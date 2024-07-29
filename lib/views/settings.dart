@@ -1,9 +1,7 @@
-import 'package:abroad_imat/views/bottom_nav.dart';
+import 'package:abroad_imat/Database/Authentication/auth.dart';
+import 'package:abroad_imat/modal/Auth_modal.dart';
 import 'package:abroad_imat/views/login.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-
 
 
 
@@ -16,7 +14,6 @@ class Settings extends StatelessWidget {
     );
   }
 }
-
 class SettingsForm extends StatefulWidget {
   @override
   _SettingsFormState createState() => _SettingsFormState();
@@ -26,6 +23,44 @@ class _SettingsFormState extends State<SettingsForm> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  DatabaseHelper _dbHelper = DatabaseHelper();
+  AuthModal? _currentUser;
+    ValueNotifier<bool> isObscure = ValueNotifier(true);
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    int currentUserId = 1; 
+    AuthModal? user = await _dbHelper.getUser(currentUserId);
+    if (user != null) {
+      setState(() {
+        _currentUser = user;
+        _usernameController.text = user.username;
+        _passwordController.text = user.password;
+      });
+    }
+  }
+
+  Future<void> _updateUser() async {
+    if (_formKey.currentState!.validate() && _currentUser != null) {
+      _currentUser!.username = _usernameController.text;
+      _currentUser!.password = _passwordController.text;
+
+      await _dbHelper.updateUser(_currentUser!);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('User information updated successfully!')),
+      );
+
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +88,7 @@ class _SettingsFormState extends State<SettingsForm> {
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red),
                 ),
+                suffix: Icon(Icons.verified_user_rounded)
               ),
               style: const TextStyle(color: Colors.black),
               validator: (value) {
@@ -64,35 +100,50 @@ class _SettingsFormState extends State<SettingsForm> {
             ),
           ),
           const SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 38),
-            child: TextFormField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                labelText: 'Change Password',
-                labelStyle: const TextStyle(color: Colors.black),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.red),
+          ValueListenableBuilder(
+            valueListenable: isObscure,
+            builder: (context, value, child) {
+              return  Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 38),
+              child: TextFormField(
+                controller: _passwordController,
+                
+                decoration: InputDecoration(
+                  labelText: 'Change Password',
+                  labelStyle: const TextStyle(color: Colors.black),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.red),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                   suffixIcon: IconButton(
+                          onPressed: () {
+                            isObscure.value = !isObscure.value;
+                          },
+                          icon: value
+                              ? const Icon(Icons.visibility_off)
+                              : const Icon(Icons.visibility),
+                        ),
                 ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                ),
+                style: const TextStyle(color: Colors.black),
+                obscureText: value,
+                obscuringCharacter: '*',
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter a password';
+                  }
+                  return null;
+                },
               ),
-              style: const TextStyle(color: Colors.black),
-              obscureText: true,
-              obscuringCharacter: '*',
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Please enter a password';
-                }
-                return null;
-              },
-            ),
+            );
+            },
+            
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           Padding(
-            padding: const EdgeInsets.only(left: 35,right: 35),
+            padding: const EdgeInsets.only(left: 35, right: 35),
             child: Container(
               width: 400,
               height: 50,
@@ -105,13 +156,7 @@ class _SettingsFormState extends State<SettingsForm> {
                 ),
               ),
               child: ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => bottom_nav()),
-                    );
-                  }
-                },
+                onPressed: _updateUser,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
@@ -128,7 +173,7 @@ class _SettingsFormState extends State<SettingsForm> {
           ),
           const SizedBox(height: 40),
           Padding(
-            padding: const EdgeInsets.only(left: 35,right: 35),
+            padding: const EdgeInsets.only(left: 35, right: 35),
             child: Container(
               width: 400,
               height: 50,

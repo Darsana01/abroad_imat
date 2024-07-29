@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:abroad_imat/Database/Authentication/auth.dart';
+import 'package:abroad_imat/modal/Auth_modal.dart';
 import 'package:abroad_imat/views/contries.dart';
 import 'package:abroad_imat/views/services.dart';
 import 'package:abroad_imat/views/settings.dart';
@@ -15,7 +17,9 @@ import 'login.dart';
 
 
 class homeabroad extends StatefulWidget {
-  homeabroad({super.key});
+  final String username;
+
+  homeabroad({super.key,required this.username});
 
   @override
    
@@ -23,6 +27,10 @@ class homeabroad extends StatefulWidget {
 }
 
 class _HomeAbroadState extends State<homeabroad> {
+@override
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,15 +41,15 @@ class _HomeAbroadState extends State<homeabroad> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
+            DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "App name or logo",
+                  Text(widget.username,
+                    //"${widget.username}",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
@@ -67,7 +75,7 @@ class _HomeAbroadState extends State<homeabroad> {
               title: const Text('Exit'),
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => homeabroad()));
+                    .push(MaterialPageRoute(builder: (context) => homeabroad(username: widget.username,)));
               },
             ),
             ListTile(
@@ -332,11 +340,11 @@ class _HomeAbroadState extends State<homeabroad> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Abroad_form(),
+                                    builder: (context) => BusinessCard(),
                                   ));
                                 },
                                 child: const Text(
-                                  "Create an application",
+                                  "More Enquery",
                                   style: TextStyle(
                                       color: Color.fromARGB(168, 255, 0, 0)),
                                 ),

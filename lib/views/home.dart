@@ -33,59 +33,83 @@ class _HomeAbroadState extends State<homeabroad> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Imat Abroad'),
+        title: const Text('App name'),
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.white,
+        child:Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              end: Alignment.topCenter,
+                begin: Alignment.bottomCenter,
+                colors: [
+              Colors.red,Colors.black
+            ])
+          ),
+          child: Column(
+            children: [
+              DrawerHeader(
+                  child:
+                  Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(widget.username,
+                              //"${widget.username}",
+                              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Colors.white),
+                            ),
+                            SizedBox(height: 8),
+                            Text("Dare to dream",style: TextStyle(color: Colors.white),),
+                          ],
+                        ),
+
+                      ]
+                  )
+
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(widget.username,
-                    //"${widget.username}",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              Expanded(child:
+              ListView(
+                padding: EdgeInsets.zero,
+                children:<Widget> [
+                  CustomListTile(
+                    icon:Icons.support,
+                    text:"Support",
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => ServicePage()));
+                    },
+                  ) ,
+                  CustomListTile(
+                    icon:Icons.settings,
+                    text:"Settings",
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => Settings()));
+                    },
+                  ) ,
+                  CustomListTile(
+                    icon:Icons.exit_to_app,
+                    text:"Exit",
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => homeabroad(username: widget.username,)));
+                    },
+                  ) ,
+                  ListTile(
+                    title: const Text('Logout',style: TextStyle(color: Colors.white),),
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => const LoginPage()));
+                    },
                   ),
-                  SizedBox(height: 8),
-                  Text("Dare to dream"),
+
                 ],
-              ),
-            ),
-            ListTile(
-              title: const Text('Services'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => ServicePage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Setings'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Settings()));
-              },
-            ),
-            ListTile(
-              title: const Text('Exit'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => homeabroad(username: widget.username,)));
-              },
-            ),
-            ListTile(
-              title: const Text('Logout'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
-              },
-            ),
-          ],
+              )),
+
+            ],
+          ),
         ),
-      ),
+        ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -369,4 +393,21 @@ class _HomeAbroadState extends State<homeabroad> {
       ),
     );
   }
+}
+
+class CustomListTile extends StatelessWidget{
+final IconData icon;
+final String text;
+final VoidCallback onTap;
+CustomListTile({required this.icon,required this.text,required this.onTap});
+  @override
+  Widget build(BuildContext context) {
+   return ListTile(
+     leading: Icon(icon,color: Colors.white,),
+     title: Text(text,style: TextStyle(color: Colors.white),),
+   onTap: onTap
+   );
+  }
+
+
 }

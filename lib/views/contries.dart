@@ -1,10 +1,12 @@
 // HomePage.dart
 import 'dart:io';
 import 'package:abroadimat/Database/country/datainsert.dart';
+import 'package:abroadimat/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:abroadimat/Database/country/sql_helper.dart';
 import 'package:abroadimat/modal/country_modal.dart';
 import 'package:flutter/material.dart';
+
 
 class Abroad_countries extends StatelessWidget {
   @override
@@ -74,19 +76,22 @@ class _HomePageState extends State<HomePage> {
         itemCount: countries.length,
         itemBuilder: (BuildContext context, int index) {
           return GridTile(
-            child:
-             Image.network(
-              countries[index].image,
-              fit: BoxFit.cover,
-            ),
-            footer: GridTileBar(
-              backgroundColor: Colors.black45,
-              title: Text(
-                countries[index].name,
-                textAlign: TextAlign.center,
+              child:
+              Image.network(
+                countries[index].image,
+                fit: BoxFit.cover,
               ),
-            ),
-          );
+              footer: GridTileBar(
+                  backgroundColor: Colors.black45,
+                  title:TextButton(onPressed: (){},
+                    child:Text(
+                      countries[index].name,
+                      textAlign: TextAlign.center,
+                    ),)
+
+              ),
+            );
+
         },
       ),
     );

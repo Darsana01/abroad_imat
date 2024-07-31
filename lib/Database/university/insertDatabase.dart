@@ -1,5 +1,5 @@
 import 'package:abroad_imat/Database/level/sqlHelper.dart';
-import 'package:abroad_imat/Database/univercity/sqlhelper.dart';
+import 'package:abroad_imat/Database/university/sqlhelper.dart';
 
 import 'package:abroad_imat/modal/univercity_modal.dart';
 

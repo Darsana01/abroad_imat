@@ -10,7 +10,7 @@ class University {
   Map<String, dynamic> toMap() {
     return {
       'title': title,
-      'content': jsonEncode(content), // Store content as a JSON string
+      'content': jsonEncode(content),
     };
   }
 

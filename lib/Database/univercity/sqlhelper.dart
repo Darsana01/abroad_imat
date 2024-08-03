@@ -23,9 +23,9 @@ class UniversityDatabaseHelper {
     String path = join(await getDatabasesPath(), 'university.db');
     return await openDatabase(
       path,
-      version: 2, // Incremented the version
+      version: 2,
       onCreate: _onCreate,
-      onUpgrade: _onUpgrade, // Added onUpgrade method
+      onUpgrade: _onUpgrade,
     );
   }
 
@@ -41,7 +41,7 @@ class UniversityDatabaseHelper {
 
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < 2) {
-      // Add content column to the table
+
       await db.execute('ALTER TABLE universities ADD COLUMN content TEXT NOT NULL DEFAULT "[]"');
     }
   }

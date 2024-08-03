@@ -98,7 +98,7 @@ final List<Map<String, dynamic>> items = [
       'image':
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Sv97PamISooC4tqu0DeGGcoMIoObUYnwrg&usqp=CAU",
     }
-  // Add other items here...
+
 ];
 
 Future<void> insertData() async {

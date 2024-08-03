@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:abroad_imat/Database/univercity/insertDatabase.dart';
 import 'package:abroad_imat/views/bottom_nav.dart';
 import 'package:abroad_imat/views/onboardind.dart';
 
 import 'package:flutter/material.dart';
+
+import 'Database/university/insertDatabase.dart';
 
 void main() async{
       HttpOverrides.global = new MyHttpOverrides();
@@ -34,5 +35,3 @@ class MyHttpOverrides extends HttpOverrides{
       ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }
-
-  

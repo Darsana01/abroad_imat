@@ -5,7 +5,7 @@ import 'package:abroad_imat/modal/Auth_modal.dart';
 import 'package:abroad_imat/views/contries.dart';
 import 'package:abroad_imat/views/services.dart';
 import 'package:abroad_imat/views/settings.dart';
-import 'package:abroad_imat/views/univercity.dart';
+import 'package:abroad_imat/views/university.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

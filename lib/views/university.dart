@@ -1,7 +1,9 @@
-import 'package:abroad_imat/Database/univercity/insertDatabase.dart';
-import 'package:abroad_imat/Database/univercity/sqlhelper.dart';
+
 import 'package:abroad_imat/modal/univercity_modal.dart';
 import 'package:flutter/material.dart';
+
+import '../Database/university/insertDatabase.dart';
+import '../Database/university/sqlhelper.dart';
 
 
 class UniversityScreen extends StatefulWidget {
